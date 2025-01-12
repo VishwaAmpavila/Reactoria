@@ -1,0 +1,121 @@
+[gd_scene load_steps=7 format=3 uid="uid://b81q8ek1j66v7"]
+
+[ext_resource type="Script" path="res://scripts/difficulty_selection.gd" id="1_v3sek"]
+[ext_resource type="FontFile" uid="uid://trp6awdeqgml" path="res://assets/fonts/PixelOperator8.ttf" id="2_7iw05"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cy8pl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sr4a3"]
+bg_color = Color(0.691357, 0.691357, 0.691357, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 6
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inaug"]
+bg_color = Color(0.400698, 0.400698, 0.400698, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 6
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b7pxq"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 6
+shadow_offset = Vector2(5, 5)
+
+[node name="Difficulty Selection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v3sek")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -229.5
+offset_top = -153.5
+offset_right = 229.5
+offset_bottom = 153.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="Easy" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_7iw05")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cy8pl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_sr4a3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_inaug")
+theme_override_styles/normal = SubResource("StyleBoxFlat_b7pxq")
+text = "Easy"
+
+[node name="Medium" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_7iw05")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cy8pl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_sr4a3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_inaug")
+theme_override_styles/normal = SubResource("StyleBoxFlat_b7pxq")
+text = "Medium"
+
+[node name="Hard" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_7iw05")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cy8pl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_sr4a3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_inaug")
+theme_override_styles/normal = SubResource("StyleBoxFlat_b7pxq")
+text = "Hard"
+
+[node name="Adaptive" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_7iw05")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cy8pl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_sr4a3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_inaug")
+theme_override_styles/normal = SubResource("StyleBoxFlat_b7pxq")
+text = "Adaptive"
+
+[connection signal="pressed" from="VBoxContainer/Easy" to="." method="_on_easy_pressed"]
+[connection signal="pressed" from="VBoxContainer/Medium" to="." method="_on_medium_pressed"]
+[connection signal="pressed" from="VBoxContainer/Hard" to="." method="_on_hard_pressed"]

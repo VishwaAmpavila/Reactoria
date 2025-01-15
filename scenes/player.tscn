@@ -1,7 +1,8 @@
-[gd_scene load_steps=41 format=3 uid="uid://bjg5r2vlnvmag"]
+[gd_scene load_steps=40 format=3 uid="uid://bjg5r2vlnvmag"]
 
 [ext_resource type="Texture2D" uid="uid://vkw4h3fuf43g" path="res://assets/sprites/knight.png" id="1_1iebs"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_liph5"]
+[ext_resource type="AudioStream" uid="uid://dlj87dnx8s33o" path="res://assets/sounds/jump.wav" id="3_x67f0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d4r4f"]
 atlas = ExtResource("1_1iebs")
@@ -19,22 +20,6 @@ region = Rect2(64, 224, 32, 32)
 atlas = ExtResource("1_1iebs")
 region = Rect2(96, 224, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jibmv"]
-atlas = ExtResource("1_1iebs")
-region = Rect2(0, 192, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_umas6"]
-atlas = ExtResource("1_1iebs")
-region = Rect2(32, 192, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_27krq"]
-atlas = ExtResource("1_1iebs")
-region = Rect2(64, 192, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ibgyb"]
-atlas = ExtResource("1_1iebs")
-region = Rect2(96, 192, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_d1hbl"]
 atlas = ExtResource("1_1iebs")
 region = Rect2(0, 0, 32, 32)
@@ -50,6 +35,10 @@ region = Rect2(64, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_s3m6a"]
 atlas = ExtResource("1_1iebs")
 region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttp8g"]
+atlas = ExtResource("1_1iebs")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n5xrv"]
 atlas = ExtResource("1_1iebs")
@@ -163,25 +152,8 @@ animations = [{
 "texture": SubResource("AtlasTexture_fimts")
 }],
 "loop": true,
-"name": &"Death",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jibmv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_umas6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_27krq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ibgyb")
-}],
-"loop": true,
-"name": &"Hit",
-"speed": 5.0
+"name": &"death",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -197,8 +169,16 @@ animations = [{
 "texture": SubResource("AtlasTexture_s3m6a")
 }],
 "loop": true,
-"name": &"Idle",
+"name": &"idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttp8g")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -226,8 +206,8 @@ animations = [{
 "texture": SubResource("AtlasTexture_eb525")
 }],
 "loop": true,
-"name": &"Roll",
-"speed": 5.0
+"name": &"roll",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -279,24 +259,37 @@ animations = [{
 "texture": SubResource("AtlasTexture_86phm")
 }],
 "loop": true,
-"name": &"Run",
-"speed": 5.0
+"name": &"run",
+"speed": 10.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_chet1"]
-radius = 5.0
-height = 14.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_53qja"]
+size = Vector2(9.6, 14.4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sdkru"]
+size = Vector2(9.6, 9.6)
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
+scale = Vector2(5, 5)
 script = ExtResource("1_liph5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_c52mv")
-animation = &"Idle"
-autoplay = "Idle"
+animation = &"idle"
+autoplay = "idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="RunCollision" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(9.53674e-08, -7.2)
+shape = SubResource("RectangleShape2D_53qja")
+
+[node name="RollCollision" type="CollisionShape2D" parent="."]
 z_index = 5
-position = Vector2(0, -7)
-shape = SubResource("CapsuleShape2D_chet1")
+position = Vector2(5.72204e-07, -4.8)
+shape = SubResource("RectangleShape2D_sdkru")
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_x67f0")
+volume_db = -25.0

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bebbe7ey3uhp4"]
+
+[ext_resource type="Texture2D" uid="uid://cesjvjpbqbshn" path="res://assets/sprites/parallax layers/ground.png" id="1_6pf24"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2r8vn"]
+size = Vector2(2306, 92)
+
+[node name="Ground" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 552)
+texture = ExtResource("1_6pf24")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1151, 604)
+shape = SubResource("RectangleShape2D_2r8vn")
